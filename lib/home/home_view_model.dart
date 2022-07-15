@@ -23,6 +23,7 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     state = const AsyncValue.data(
       HomeState(
         searchWord: "",
+        repositories: [],
       ),
     );
   }
