@@ -13,8 +13,22 @@ class HomePage extends ConsumerWidget {
       data: (data) {
         return Scaffold(
           appBar: AppBar(title: const Text("test")),
-          body: TextFormField(
-            onChanged: viewModel.changeSearchWord,
+          body: Column(
+            children: [
+              TextFormField(
+                onChanged: viewModel.changeSearchWord,
+              ),
+              Expanded(
+                child: ListView(
+                  children: data.repositories.map((repo) =>
+                      ListTile(title: Text(repo.name)),
+                  ).toList(),
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: viewModel.searchRepositories,
           ),
         );
       },
