@@ -22,4 +22,9 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
       ),
     );
   }
+
+  // textFieldとstateの対応
+  void changeSearchWord(String value) {
+    state = AsyncValue.data(state.value!.copyWith(searchWord: value));
+  }
 }

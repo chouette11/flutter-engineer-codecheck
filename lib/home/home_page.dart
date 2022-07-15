@@ -13,7 +13,9 @@ class HomePage extends ConsumerWidget {
       data: (data) {
         return Scaffold(
           appBar: AppBar(title: const Text("test")),
-          body: TextFormField(),
+          body: TextFormField(
+            onChanged: viewModel.changeSearchWord,
+          ),
         );
       },
       error: (e, msg) => Text("$msg"),
