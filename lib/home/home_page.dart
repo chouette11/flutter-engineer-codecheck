@@ -11,7 +11,10 @@ class HomePage extends ConsumerWidget {
     final viewModel = ref.watch(homeViewModelProvider.notifier);
     return state.when(
       data: (data) {
-        return Scaffold();
+        return Scaffold(
+          appBar: AppBar(title: const Text("test")),
+          body: TextFormField(),
+        );
       },
       error: (e, msg) => Text("$msg"),
       loading: () => const Center(
