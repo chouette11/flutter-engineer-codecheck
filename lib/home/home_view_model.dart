@@ -46,4 +46,9 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
       return repositories;
     }
   }
+
+  Future<void> searchRepositories() async {
+    final repositories = await fetchRepositories(state.value!.searchWord);
+    state = AsyncValue.data(state.value!.copyWith(repositories: repositories));
+  }
 }
