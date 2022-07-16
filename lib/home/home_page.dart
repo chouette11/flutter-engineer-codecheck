@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_engineer_codecheck/home/home_view_model.dart';
+import 'package:flutter_engineer_codecheck/home/sub_pages/repository_detail_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerWidget {
@@ -21,7 +22,15 @@ class HomePage extends ConsumerWidget {
               Expanded(
                 child: ListView(
                   children: data.repositories.map((repo) =>
-                      ListTile(title: Text(repo.name)),
+                      ListTile(
+                        title: Text(repo.name),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RepositoryDetailPage(repository: repo),
+                          ),
+                        ),
+                      ),
                   ).toList(),
                 ),
               ),
