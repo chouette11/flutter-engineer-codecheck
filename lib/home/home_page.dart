@@ -11,7 +11,26 @@ class HomePage extends ConsumerWidget {
     final viewModel = ref.watch(homeViewModelProvider.notifier);
     return state.when(
       data: (data) {
-        return Scaffold();
+        return Scaffold(
+          appBar: AppBar(title: const Text("test")),
+          body: Column(
+            children: [
+              TextFormField(
+                onChanged: viewModel.changeSearchWord,
+              ),
+              Expanded(
+                child: ListView(
+                  children: data.repositories.map((repo) =>
+                      ListTile(title: Text(repo.name)),
+                  ).toList(),
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: viewModel.searchRepositories,
+          ),
+        );
       },
       error: (e, msg) => Text("$msg"),
       loading: () => const Center(

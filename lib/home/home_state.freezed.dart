@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   String get searchWord => throw _privateConstructorUsedError;
+  List<Repository> get repositories => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -27,7 +28,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({String searchWord});
+  $Res call({String searchWord, List<Repository> repositories});
 }
 
 /// @nodoc
@@ -41,12 +42,17 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   $Res call({
     Object? searchWord = freezed,
+    Object? repositories = freezed,
   }) {
     return _then(_value.copyWith(
       searchWord: searchWord == freezed
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
               as String,
+      repositories: repositories == freezed
+          ? _value.repositories
+          : repositories // ignore: cast_nullable_to_non_nullable
+              as List<Repository>,
     ));
   }
 }
@@ -57,7 +63,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({String searchWord});
+  $Res call({String searchWord, List<Repository> repositories});
 }
 
 /// @nodoc
@@ -73,12 +79,17 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchWord = freezed,
+    Object? repositories = freezed,
   }) {
     return _then(_$_HomeState(
       searchWord: searchWord == freezed
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
               as String,
+      repositories: repositories == freezed
+          ? _value._repositories
+          : repositories // ignore: cast_nullable_to_non_nullable
+              as List<Repository>,
     ));
   }
 }
@@ -86,15 +97,24 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeState implements _HomeState {
-  const _$_HomeState({this.searchWord = ""});
+  const _$_HomeState(
+      {this.searchWord = "", final List<Repository> repositories = const []})
+      : _repositories = repositories;
 
   @override
   @JsonKey()
   final String searchWord;
+  final List<Repository> _repositories;
+  @override
+  @JsonKey()
+  List<Repository> get repositories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_repositories);
+  }
 
   @override
   String toString() {
-    return 'HomeState(searchWord: $searchWord)';
+    return 'HomeState(searchWord: $searchWord, repositories: $repositories)';
   }
 
   @override
@@ -103,12 +123,16 @@ class _$_HomeState implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
             const DeepCollectionEquality()
-                .equals(other.searchWord, searchWord));
+                .equals(other.searchWord, searchWord) &&
+            const DeepCollectionEquality()
+                .equals(other._repositories, _repositories));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(searchWord));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(searchWord),
+      const DeepCollectionEquality().hash(_repositories));
 
   @JsonKey(ignore: true)
   @override
@@ -117,10 +141,14 @@ class _$_HomeState implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({final String searchWord}) = _$_HomeState;
+  const factory _HomeState(
+      {final String searchWord,
+      final List<Repository> repositories}) = _$_HomeState;
 
   @override
   String get searchWord;
+  @override
+  List<Repository> get repositories;
   @override
   @JsonKey(ignore: true)
   _$$_HomeStateCopyWith<_$_HomeState> get copyWith =>
