@@ -13,29 +13,32 @@ class RepositoryDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text("test")),
-      body: Column(
-        children: [
-          Image.network(repository.ownerIconUrl),
-          Text(
-            repository.name,
-            style: textTheme.titleLarge,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text("written by ${repository.language}"),
-              Column(
-                children: [
-                  Text("${repository.starCount} stars"),
-                  Text("${repository.watcherCount} watchers"),
-                  Text("${repository.forkCount} forks"),
-                  Text("${repository.issueCount} open issues"),
-                ],
-              )
-            ],
-          )
-        ],
+      appBar: AppBar(title: const Text("Flutter Engineer CodeCheck")),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Image.network(repository.ownerIconUrl),
+            Text(
+              repository.name,
+              style: textTheme.titleLarge,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text("written by ${repository.language}"),
+                Column(
+                  children: [
+                    Text("${repository.starCount} stars"),
+                    Text("${repository.watcherCount} watchers"),
+                    Text("${repository.forkCount} forks"),
+                    Text("${repository.issueCount} open issues"),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
