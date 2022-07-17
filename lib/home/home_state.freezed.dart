@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeState {
+  bool get isLoading => throw _privateConstructorUsedError;
   String get searchWord => throw _privateConstructorUsedError;
   List<Repository> get repositories => throw _privateConstructorUsedError;
 
@@ -28,7 +29,7 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({String searchWord, List<Repository> repositories});
+  $Res call({bool isLoading, String searchWord, List<Repository> repositories});
 }
 
 /// @nodoc
@@ -41,10 +42,15 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? isLoading = freezed,
     Object? searchWord = freezed,
     Object? repositories = freezed,
   }) {
     return _then(_value.copyWith(
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       searchWord: searchWord == freezed
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
@@ -63,7 +69,7 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _$_HomeState value, $Res Function(_$_HomeState) then) =
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({String searchWord, List<Repository> repositories});
+  $Res call({bool isLoading, String searchWord, List<Repository> repositories});
 }
 
 /// @nodoc
@@ -78,10 +84,15 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? isLoading = freezed,
     Object? searchWord = freezed,
     Object? repositories = freezed,
   }) {
     return _then(_$_HomeState(
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       searchWord: searchWord == freezed
           ? _value.searchWord
           : searchWord // ignore: cast_nullable_to_non_nullable
@@ -98,9 +109,14 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {this.searchWord = "", final List<Repository> repositories = const []})
+      {this.isLoading = false,
+      this.searchWord = "",
+      final List<Repository> repositories = const []})
       : _repositories = repositories;
 
+  @override
+  @JsonKey()
+  final bool isLoading;
   @override
   @JsonKey()
   final String searchWord;
@@ -114,7 +130,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(searchWord: $searchWord, repositories: $repositories)';
+    return 'HomeState(isLoading: $isLoading, searchWord: $searchWord, repositories: $repositories)';
   }
 
   @override
@@ -122,6 +138,7 @@ class _$_HomeState implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
                 .equals(other.searchWord, searchWord) &&
             const DeepCollectionEquality()
@@ -131,6 +148,7 @@ class _$_HomeState implements _HomeState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(isLoading),
       const DeepCollectionEquality().hash(searchWord),
       const DeepCollectionEquality().hash(_repositories));
 
@@ -142,9 +160,12 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {final String searchWord,
+      {final bool isLoading,
+      final String searchWord,
       final List<Repository> repositories}) = _$_HomeState;
 
+  @override
+  bool get isLoading;
   @override
   String get searchWord;
   @override

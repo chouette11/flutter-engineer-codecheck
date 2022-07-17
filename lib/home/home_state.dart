@@ -6,6 +6,7 @@ part 'home_state.freezed.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
+    @Default(false) bool isLoading,
     @Default("") String searchWord,
     @Default([]) List<Repository> repositories,
   }) = _HomeState;
