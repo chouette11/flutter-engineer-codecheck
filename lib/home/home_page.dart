@@ -20,6 +20,7 @@ class HomePage extends ConsumerWidget {
               children: [
                 TextFormField(
                   onChanged: viewModel.changeSearchWord,
+                  onEditingComplete: viewModel.searchRepositories,
                 ),
                 Expanded(
                   child: ListView(
@@ -38,9 +39,6 @@ class HomePage extends ConsumerWidget {
                 ),
               ],
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: viewModel.searchRepositories,
           ),
         );
       },
