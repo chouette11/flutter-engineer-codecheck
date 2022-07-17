@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           primarySwatch: Colors.blue
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: const HomePage(),
     );
   }
