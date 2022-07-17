@@ -23,7 +23,8 @@ class HomePage extends ConsumerWidget {
                   onEditingComplete: viewModel.searchRepositories,
                 ),
                 Expanded(
-                  child: ListView(
+                  child: !data.isLoading ? // レポジトリ検索中かどうか
+                  ListView(
                     children: data.repositories.map((repo) =>
                         ListTile(
                           title: Text(repo.name),
@@ -35,7 +36,7 @@ class HomePage extends ConsumerWidget {
                           ),
                         ),
                     ).toList(),
-                  ),
+                  ) : const Center(child: CircularProgressIndicator()),
                 ),
               ],
             ),
