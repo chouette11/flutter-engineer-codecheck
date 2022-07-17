@@ -34,7 +34,8 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
   }
 
   Future<List<Repository>> fetchRepositories(String searchWord) async {
-    final res = await http.get(Uri.parse('https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc'));
+    final apiUrl = 'https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc';
+    final res = await whileLoading(http.get(Uri.parse(apiUrl)));
     List<Repository> repositories = [];
     if (res.statusCode == 200) {
       final decoded = json.decode(res.body);
