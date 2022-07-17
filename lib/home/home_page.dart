@@ -20,9 +20,11 @@ class HomePage extends ConsumerWidget {
               children: [
                 TextFormField(
                   onChanged: viewModel.changeSearchWord,
+                  onEditingComplete: viewModel.searchRepositories,
                 ),
                 Expanded(
-                  child: ListView(
+                  child: !data.isLoading ? // レポジトリ検索中かどうか
+                  ListView(
                     children: data.repositories.map((repo) =>
                         ListTile(
                           title: Text(repo.name),
@@ -34,13 +36,10 @@ class HomePage extends ConsumerWidget {
                           ),
                         ),
                     ).toList(),
-                  ),
+                  ) : const Center(child: CircularProgressIndicator()),
                 ),
               ],
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: viewModel.searchRepositories,
           ),
         );
       },

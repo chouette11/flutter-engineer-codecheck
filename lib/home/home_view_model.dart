@@ -34,7 +34,8 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
   }
 
   Future<List<Repository>> fetchRepositories(String searchWord) async {
-    final res = await http.get(Uri.parse('https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc'));
+    final apiUrl = 'https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc';
+    final res = await whileLoading(http.get(Uri.parse(apiUrl)));
     List<Repository> repositories = [];
     if (res.statusCode == 200) {
       final decoded = json.decode(res.body);
@@ -50,5 +51,22 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
   Future<void> searchRepositories() async {
     final repositories = await fetchRepositories(state.value!.searchWord);
     state = AsyncValue.data(state.value!.copyWith(repositories: repositories));
+  }
+
+  // ロード制御
+  Future<dynamic> whileLoading(Future future) {
+    return Future.microtask(toLoading)
+        .then<dynamic>((value) => future)
+        .whenComplete(toIdle);
+  }
+
+  // ロード開始
+  void toLoading() {
+    state = AsyncValue.data(state.value!.copyWith(isLoading: true));
+  }
+
+  // ロード終了
+  void toIdle() {
+    state = AsyncValue.data(state.value!.copyWith(isLoading: false));
   }
 }
