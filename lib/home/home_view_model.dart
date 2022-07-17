@@ -51,4 +51,21 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     final repositories = await fetchRepositories(state.value!.searchWord);
     state = AsyncValue.data(state.value!.copyWith(repositories: repositories));
   }
+
+  // ロード制御
+  Future<dynamic> whileLoading(Future future) {
+    return Future.microtask(toLoading)
+        .then<dynamic>((value) => future)
+        .whenComplete(toIdle);
+  }
+
+  // ロード開始
+  void toLoading() {
+    state = AsyncValue.data(state.value!.copyWith(isLoading: true));
+  }
+
+  // ロード終了
+  void toIdle() {
+    state = AsyncValue.data(state.value!.copyWith(isLoading: false));
+  }
 }
