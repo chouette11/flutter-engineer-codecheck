@@ -19,6 +19,7 @@ class RepositoryDetailPage extends ConsumerWidget {
         child: Column(
           children: [
             Image.network(repository.ownerIconUrl),
+            const SizedBox(height: 8),
             Text(
               repository.name,
               style: textTheme.titleLarge,
@@ -34,7 +35,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                     Text("${repository.forkCount} forks"),
                     Text("${repository.issueCount} open issues"),
                   ],
-                )
+                ),
               ],
             ),
           ],
