@@ -13,28 +13,31 @@ class HomePage extends ConsumerWidget {
     return state.when(
       data: (data) {
         return Scaffold(
-          appBar: AppBar(title: const Text("test")),
-          body: Column(
-            children: [
-              TextFormField(
-                onChanged: viewModel.changeSearchWord,
-              ),
-              Expanded(
-                child: ListView(
-                  children: data.repositories.map((repo) =>
-                      ListTile(
-                        title: Text(repo.name),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RepositoryDetailPage(repository: repo),
+          appBar: AppBar(title: const Text("Flutter Engineer CodeCheck")),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  onChanged: viewModel.changeSearchWord,
+                ),
+                Expanded(
+                  child: ListView(
+                    children: data.repositories.map((repo) =>
+                        ListTile(
+                          title: Text(repo.name),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RepositoryDetailPage(repository: repo),
+                            ),
                           ),
                         ),
-                      ),
-                  ).toList(),
+                    ).toList(),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: viewModel.searchRepositories,
