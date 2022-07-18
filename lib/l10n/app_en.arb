@@ -1,0 +1,47 @@
+{
+  "searchHintText": "Please enter a search word",
+  "@searchHintText": {
+    "description": "HomePageのTextFormFieldのhintText"
+  },
+  "repositoryLanguage": "written by {language}",
+  "@repositoryLanguage": {
+    "description": "Programming language used in the repository",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "starsCount": "{count} stars",
+  "@starsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "watchersCount": "{count} watchers",
+  "@watchersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "forksCount": "{count} forks",
+  "@forksCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "openIssuesCount": "{count} open issues",
+  "@openIssuesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

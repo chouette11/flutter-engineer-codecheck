@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_engineer_codecheck/models/repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({
@@ -11,6 +12,7 @@ class RepositoryDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = L10n.of(context);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(title: const Text("Flutter Engineer CodeCheck")),
@@ -27,13 +29,13 @@ class RepositoryDetailPage extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("written by ${repository.language}"),
+                Text(l10n!.repositoryLanguage(repository.language)),
                 Column(
                   children: [
-                    Text("${repository.starCount} stars"),
-                    Text("${repository.watcherCount} watchers"),
-                    Text("${repository.forkCount} forks"),
-                    Text("${repository.issueCount} open issues"),
+                    Text(l10n.starsCount(repository.starCount)),
+                    Text(l10n.watchersCount(repository.watcherCount)),
+                    Text(l10n.forksCount(repository.forkCount)),
+                    Text(l10n.openIssuesCount(repository.issueCount)),
                   ],
                 ),
               ],
