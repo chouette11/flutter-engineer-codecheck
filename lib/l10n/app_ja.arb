@@ -1,3 +1,15 @@
 {
-  "helloWorld": "ハローワールド！"
+  "searchHintText": "検索ワードを入力してください",
+  "@searchHintText": {
+    "description": "HomePageのTextFormFieldのhintText"
+  },
+  "repositoryLanguage": "言語: {language}",
+  "@repositoryLanguage": {
+    "description": "レポジトリの言語",
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  }
 }
