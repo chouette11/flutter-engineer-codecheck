@@ -32,10 +32,10 @@ class RepositoryDetailPage extends ConsumerWidget {
                 Text(l10n!.repositoryLanguage(repository.language)),
                 Column(
                   children: [
-                    Text("${repository.starCount} stars"),
-                    Text("${repository.watcherCount} watchers"),
-                    Text("${repository.forkCount} forks"),
-                    Text("${repository.issueCount} open issues"),
+                    Text(l10n.starsCount(repository.starCount)),
+                    Text(l10n.watchersCount(repository.watcherCount)),
+                    Text(l10n.forksCount(repository.forkCount)),
+                    Text(l10n.openIssuesCount(repository.issueCount)),
                   ],
                 ),
               ],
