@@ -43,5 +43,25 @@
         "type": "int"
       }
     }
+  },
+  "errorMessage": "エラー",
+  "@errorMessage": {
+    "description": "予期しないエラー"
+  },
+  "errorMessage304": "コンテンツが更新されてません",
+  "@errorMessage304": {
+    "description": "アクセス自体に問題はないが、対象ページのコンテンツが前回のアクセス時から更新されていない。"
+  },
+  "errorMessage403": "apiのfetch制限を超えています。1分後に再試行してください。",
+  "@errorMessage403": {
+    "description": "apiのフェッチ制限が超えている"
+  },
+  "errorMessage422": "プライベートレポジトリは検索できません",
+  "@errorMessage422": {
+    "description": "privateレポジトリで検索ができない"
+  },
+  "errorMessage502": "60回/hourのリクエストを超えています",
+  "@errorMessage502": {
+    "description": "github認証をしていない場合60回/hourのリクエストの制限がある"
   }
 }
