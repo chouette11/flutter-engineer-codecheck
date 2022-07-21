@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/components/snackbar.dart';
 import 'package:flutter_engineer_codecheck/home/home_state.dart';
 import 'package:flutter_engineer_codecheck/models/repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +35,9 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     state = AsyncValue.data(state.value!.copyWith(searchWord: value));
   }
 
-  Future<List<Repository>> fetchRepositories(String searchWord) async {
+  Future<List<Repository>> fetchRepositories(String searchWord, BuildContext context) async {
+    // エラーメッセージのダイアログを出す
+    final snackBar = AppSnackBar.of(message: ScaffoldMessenger.of(context));
     final apiUrl = 'https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc';
     final res = await whileLoading(http.get(Uri.parse(apiUrl)));
     List<Repository> repositories = [];
@@ -48,8 +52,8 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     }
   }
 
-  Future<void> searchRepositories() async {
-    final repositories = await fetchRepositories(state.value!.searchWord);
+  Future<void> searchRepositories(BuildContext context) async {
+    final repositories = await fetchRepositories(state.value!.searchWord, context);
     state = AsyncValue.data(state.value!.copyWith(repositories: repositories));
   }
 
