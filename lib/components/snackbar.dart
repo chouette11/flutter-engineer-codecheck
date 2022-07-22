@@ -9,25 +9,25 @@ enum SnackBarStatus {
 
 class AppSnackBar {
   AppSnackBar._({
-    required this.message,
+    required this.messenger,
   });
-  final ScaffoldMessengerState message;
+  final ScaffoldMessengerState messenger;
 
   factory AppSnackBar.of({
     required ScaffoldMessengerState message,
   }) {
     return AppSnackBar._(
-      message: message,
+      messenger: message,
     );
   }
 
   void show(String title) {
-    message.clearSnackBars();
-    message.showSnackBar(
+    messenger.clearSnackBars();
+    messenger.showSnackBar(
       customSnackBar(
         CustomSnackBar(
           title,
-          messager: message,
+          messenger: messenger,
         ),
       ),
     );
@@ -45,10 +45,10 @@ class CustomSnackBar extends ConsumerWidget {
   const CustomSnackBar(
       this.title, {
         Key? key,
-        required this.messager,
+        required this.messenger,
       }) : super(key: key);
   final String title;
-  final ScaffoldMessengerState messager;
+  final ScaffoldMessengerState messenger;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -82,7 +82,7 @@ class CustomSnackBar extends ConsumerWidget {
               Icons.close,
               color: onColor,
             ),
-            onTap: () => messager.hideCurrentSnackBar(),
+            onTap: () => messenger.hideCurrentSnackBar(),
           ),
         ],
       ),
