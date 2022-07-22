@@ -31,15 +31,16 @@ class HomePage extends ConsumerWidget {
                   child: !data.isLoading ? // レポジトリ検索中かどうか
                   ListView(
                     children: data.repositories.map((repo) =>
-                        ListTile(
-                          title: Text(repo.name),
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RepositoryDetailPage(repository: repo),
-                            ),
+                      ListTile(
+                        title: Text(repo.name),
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                RepositoryDetailPage(repository: repo),
                           ),
                         ),
+                      ),
                     ).toList(),
                   ) : const Center(child: CircularProgressIndicator()),
                 ),
