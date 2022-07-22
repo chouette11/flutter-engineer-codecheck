@@ -43,5 +43,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "errorMessage": "Error",
+  "errorMessage304": "Not modified",
+  "errorMessage403": "API fetch limit exceeded\n Please try again after 1 minute",
+  "errorMessage422": "Validation failed",
+  "errorMessage502": "Service unavailable"
 }

@@ -22,7 +22,7 @@ class HomePage extends ConsumerWidget {
               children: [
                 TextFormField(
                   onChanged: viewModel.changeSearchWord,
-                  onEditingComplete: viewModel.searchRepositories,
+                  onEditingComplete: () => viewModel.searchRepositories(context),
                   decoration: InputDecoration(
                     hintText: l10n!.searchHintText,
                   ),

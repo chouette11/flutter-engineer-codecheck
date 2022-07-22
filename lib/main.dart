@@ -30,10 +30,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+          ),
+        ),
       ),
       darkTheme: ThemeData(
           brightness: Brightness.dark,
-          primarySwatch: Colors.blue
+          primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
       ),
       themeMode: ThemeMode.system,
       home: const HomePage(),

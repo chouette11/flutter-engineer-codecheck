@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/components/snackbar.dart';
 import 'package:flutter_engineer_codecheck/home/home_state.dart';
 import 'package:flutter_engineer_codecheck/models/repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
 
 final homeViewModelProvider =
@@ -33,7 +36,10 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
     state = AsyncValue.data(state.value!.copyWith(searchWord: value));
   }
 
-  Future<List<Repository>> fetchRepositories(String searchWord) async {
+  Future<List<Repository>> fetchRepositories(String searchWord, BuildContext context) async {
+    final l10n = L10n.of(context);
+    // エラーメッセージのダイアログを出す
+    final snackBar = AppSnackBar.of(message: ScaffoldMessenger.of(context));
     final apiUrl = 'https://api.github.com/search/repositories?q=$searchWord&sort=stars&order=desc';
     final res = await whileLoading(http.get(Uri.parse(apiUrl)));
     List<Repository> repositories = [];
@@ -44,12 +50,28 @@ class HomeViewModel extends StateNotifier<AsyncValue<HomeState>> {
       }
       return repositories;
     } else {
+      String errorMessage = l10n!.errorMessage;
+      switch (res.statusCode) {
+        case 304:
+          errorMessage = l10n.errorMessage304;
+          break;
+        case 403:
+          errorMessage = l10n.errorMessage403;
+          break;
+        case 422:
+          errorMessage = l10n.errorMessage422;
+          break;
+        case 502:
+          errorMessage = l10n.errorMessage502;
+          break;
+      }
+      snackBar.show(errorMessage);
       return repositories;
     }
   }
 
-  Future<void> searchRepositories() async {
-    final repositories = await fetchRepositories(state.value!.searchWord);
+  Future<void> searchRepositories(BuildContext context) async {
+    final repositories = await fetchRepositories(state.value!.searchWord, context);
     state = AsyncValue.data(state.value!.copyWith(repositories: repositories));
   }
 
