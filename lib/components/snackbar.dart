@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/functions/dark_mode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum SnackBarStatus {
@@ -53,8 +54,13 @@ class CustomSnackBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    var backgroundColor = Colors.white;
-    var onColor = Colors.black;
+    final textTheme = Theme.of(context).textTheme;
+    final backgroundColor = isDarkMode(context) ?
+        Colors.black87 :
+        Colors.white;
+    var onColor = isDarkMode(context) ?
+        Colors.white:
+        Colors.black;
 
     return Container(
       width: double.infinity,
@@ -72,6 +78,7 @@ class CustomSnackBar extends ConsumerWidget {
                 Flexible(
                   child: Text(
                     title,
+                    style: textTheme.bodyMedium,
                   ),
                 ),
               ],
